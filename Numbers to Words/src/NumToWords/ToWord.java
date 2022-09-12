@@ -2,23 +2,34 @@ package NumToWords;
 
 public class ToWord {
     public String number = "";
+
+    //constructor convert the int into string for easy access to all the digits in the number
     public ToWord(int n){
         number = n+"";
     }
+
+    // function that returns the name of the number using the rest of the function in the class
     public String convert(){
         int n = 0;
-        if (number.length()==3){
-            n = 0;
+        if (number.equals("0")){
+            return "zero";
         }
-        else if (number.length() == 2) {
-            n = -1;
+        else {
+            if (number.length() == 3) {
+                n = 0;
+            } else if (number.length() == 2) {
+                n = -1;
+            } else if (number.length() == 1) {
+                n = -2;
+            }
+            return hundreds(n) + " " + tens(n) + " " + ones(n);
         }
-        else if (number.length() == 1) {
-            n = -2;
-        }
-        return hundreds(n)+" "+tens(n)+" "+ones(n);
     }
-    public String hundreds(int n){
+
+
+    //function that returns string with the name of the hundreds value using switch case
+    // private not meant for using outside this class
+    private String hundreds(int n){
         try {
             switch (number.charAt(n)) {
                 case '0':
@@ -60,7 +71,9 @@ public class ToWord {
         }
 
     }
-    public String tens(int n){
+    //function that returns string with the name of the tens value using switch case
+// private not meant for using outside this class
+    private String tens(int n){
         try {
 
             switch (number.charAt(n + 1)) {
@@ -98,7 +111,10 @@ public class ToWord {
             return "";
         }
     }
-    public String ones(int n){
+    //function that returns string with the name of the ones value using switch case
+    // private not meant for using outside this class
+
+    private String ones(int n){
         try {
             switch (number.charAt(n + 2)) {
                 case '0':
